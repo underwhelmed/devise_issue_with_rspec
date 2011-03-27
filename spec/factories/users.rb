@@ -1,4 +1,12 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
+Factory.sequence :name do |n|
+  "name_#{n}"
+end
 
-Factory.define :user do |f|
+Factory.sequence :user do |n|
+  "user#{n}"
+end
+
+Factory.define :user do |u|
+  u.username     { Factory.next(:user) }
+  u.email        { Factory.next(:user) }
 end
